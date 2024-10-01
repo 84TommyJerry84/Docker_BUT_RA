@@ -1,0 +1,3 @@
+FROM busybox:latest
+ENTRYPOINT ["cat"]
+CMD ["/etc/passwd", "/etc/hosts"]

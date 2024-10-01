@@ -1,0 +1,32 @@
+erreur concernant cette commande 
+
+$ docker container inspect -f '' volume-test
+
+corrigé :
+
+docker container inspect volume-test => affiche le json du volume
+
+avec l'option f 
+
+docker container inspect -f '{{.Id}}' volume-test => affiche l'id du volume
+
+le dockerfile manque l'utilisation de touch :
+
+FROM nginx:alpine
+LABEL maintainer="Collabnix"
+
+RUN apk update && apk add --no-cache coreutils
+
+VOLUME /myvol
+
+CMD ["nginx", "-g", "daemon off;"]
+
+Pour ajouter un fichier :
+
+touch /myvol/test.txt
+exit
+
+
+
+
+

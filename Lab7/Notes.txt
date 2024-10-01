@@ -1,0 +1,17 @@
+erreur dans le second dockerfile :
+
+version du lab :
+
+FROM alpine:3.9.3
+LABEL maintainer="Collabnix"
+RUN apk add --update && \
+	apk add curl  && \  
+	rm -rf /var/cache/apk/
+
+version corrigé :
+
+FROM alpine:3.9.3
+LABEL maintainer="Collabnix"
+
+RUN apk add --update curl && \
+    rm -rf /var/cache/apk/*

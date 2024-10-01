@@ -1,0 +1,21 @@
+FROM ubuntu:22.04
+
+RUN apt-get update -qq && apt-get install -y ca-certificates sudo curl git-core locales \
+    autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev \
+    libncurses5-dev libffi-dev libgdbm-dev gnupg2 libgmp-dev libgmp10 libgmpxx4ldbl
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+RUN apt-get install -y ruby-full
+
+RUN gem install bundler
+
+ONBUILD ADD . /opt/rails_demo
+ONBUILD WORKDIR /opt/rails_demo
+ONBUILD RUN bundle install
+ONBUILD CMD bundle exec rails server

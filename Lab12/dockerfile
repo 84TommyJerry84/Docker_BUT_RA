@@ -1,0 +1,11 @@
+
+FROM nginx:alpine
+
+
+LABEL maintainer="test1" maintainer2="test2"
+
+
+VOLUME /myvol
+
+
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,8 @@
+FROM nginx:alpine
+LABEL maintainer="Collabnix"
+
+RUN apk update && apk add --no-cache coreutils
+
+VOLUME /myvol
+
+CMD ["nginx", "-g", "daemon off;"]
